@@ -1,0 +1,6 @@
+pymupdf
+pdfplumber
+sentence-transformers
+psycopg[binary]
+pgvector
+
