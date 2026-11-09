@@ -1,2 +1,13 @@
-services: {}
-
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: maintidoc_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: maintidoc
+      POSTGRES_PASSWORD: change_me
+      POSTGRES_DB: maintidoc
+    ports: ["5433:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+volumes:
+  pgdata:

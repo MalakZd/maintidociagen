@@ -1,0 +1,20 @@
+{
+ "data\\extracted\\pacific_compresseur_plongee\\images\\p006_0.png": {
+  "source": "pacific_compresseur_plongee",
+  "page": 6,
+  "description": "La figure présente un schéma détaillé d'un bloc compresseur avec des numéros associés à différentes pièces. On voit plusieurs pistons (12), une vanne principale ou régulateur de pression (8) et diverses parties du système, comme les serpentins de refroidissement intermédiaires (9-6). Les tuyaux reliant ces composants sont visibles ainsi que des ressorts (7 & 4/5) qui pourraient servir à la réduction d'oscillation. Le schéma est bien organisé et met en évidence les différentes étapes de fonctionnement du compresseur, sans mentionner explicitement le type précis ou l'état actuel des composants visibles dans cette vue explosee.",
+  "auto_generated": true
+ },
+ "data\\extracted\\pacific_compresseur_plongee\\images\\p006_1.png": {
+  "source": "pacific_compresseur_plongee",
+  "page": 6,
+  "description": "La figure présente un schéma détaillé d'un bloc compresseur avec des numéros associés à divers composants. On voit plusieurs pistons (15), une soupape ouverte vers le haut (9) et la partie supérieure du volant de l'inertie (4). Des ressorts sont visibles autour, probablement pour maintenir les pièces en place sous pression.\n\nLes numéros 6 à 8 semblent indiquer des tuyaux ou conduits. Le numéro 10 pourrait représenter un radiateur intermédiaire de refroidissement du compresseur et le nombre 3 une partie inférieure du bloc, peut-être la base sur laquelle repose l'ensemble.\n\nLes numéros sont clairs sans ambiguïté pour les composants visibles.",
+  "auto_generated": true
+ },
+ "data\\extracted\\pacific_compresseur_plongee\\images\\p011_0.png": {
+  "source": "pacific_compresseur_plongee",
+  "page": 11,
+  "description": "La figure présente un schéma de principe d'un système de refroidissement ou de climatisation, probablement associée au type PACIFIC mentionné dans le contexte du manuel.\n\nLe compresseur est représenté par une boîte rouge (D) avec des flèches indiquant la direction du flux. L'entrée principale se trouve à l'avant gauche et sort de là vers un point marqué comme \"sortie\" sur le côté droit, où les gaz sont probablement refroidis ou conditionnés.\n\nDes tuyaux en cuivre (C) relient différents points dans ce système pour assurer la circulation du fluide. L'entrée principale est indiquée par une flèche bleue et jaune à l'intérieur de cette boîte rouge, tandis que le point \"sortie\" a des lignes rouges.\n\nL'étiquette (E) au bas pourrait désigner un élément comme la base ou le pied du compresseur.",
+  "auto_generated": true
+ }
+}
