@@ -34,6 +34,7 @@ SOURCES = []  # références collectées pendant l'exécution
 
 def _search(doc_type: str, query: str) -> str:
     nodes = RETRIEVERS[doc_type].retrieve(query)
+    nodes = [n for n in nodes if n.score is not None and n.score >= 0.40]
     if not nodes:
         return f"Aucun résultat de type {doc_type}."
     out = []
@@ -42,6 +43,7 @@ def _search(doc_type: str, query: str) -> str:
         SOURCES.append((m["page"], m["type"], n.score))
         out.append(f"(page {m['page']}, {m['type']}, score {n.score:.2f})\n{n.node.text[:1200]}")
     return "\n\n".join(out)
+    
 
 @tool
 def search_text(query: str) -> str:
@@ -53,10 +55,30 @@ def search_tables(query: str) -> str:
     """Cherche dans les tableaux du manuel : pannes causes/remèdes, fréquences d'entretien, pièces."""
     return _search("table", query)
 
+# @tool
+# def search_images(query: str) -> str:
+#     """Cherche dans les descriptions automatiques d'images (schémas, panneaux). Peu fiable pour les détails."""
+#     return _search("image", query)
+
 @tool
 def search_images(query: str) -> str:
-    """Cherche dans les descriptions automatiques d'images (schémas, panneaux). Peu fiable pour les détails."""
-    return _search("image", query)
+    """Cherche des schémas, photos et panneaux de commande, par ressemblance visuelle et par description."""
+    import os
+    out = []
+    try:
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "retrieval"))
+        from clip_search import search_images_clip
+        for _, page, path, score in search_images_clip(query, 3):
+            SOURCES.append((page, "image", float(score)))
+            out.append(f"Image page {page} (similarité CLIP {score:.2f}) : {path}")
+    except Exception as e:
+        out.append(f"(Recherche CLIP indisponible : {type(e).__name__})")
+    desc = _search("image", query)
+    if not desc.startswith("Aucun"):
+        out.append("Descriptions automatiques (peu fiables, jamais pour les détails) :\n" + desc)
+    if len(out) == 1 and out[0].startswith("(Recherche CLIP"):
+        return "Aucune image trouvée."
+    return "\n".join(out) + "\nIndique les pages et invite à consulter les images."
 
 TOOLS = [search_text, search_tables, search_images]
 TOOLS_BY_NAME = {t.name: t for t in TOOLS}

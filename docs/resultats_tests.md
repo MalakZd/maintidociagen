@@ -1,0 +1,9 @@
+| Question | Attendu | Outils | Pages consultées | Temps (s) | Réponse (début) | Verdict |
+|---|---|---|---|---|---|---|
+| Comment vidanger l'huile du compresseur ? | p.16 | search_text, search_text |  | 441 | Je ne trouve pas cette information dans les documents. En cas de doute, faites intervenir un technicien habilité. | à remplir |
+| Le compresseur ne démarre pas, quelles sont les causes et les remèdes ? | p.30 | search_tables, search_text |  | 293 | Je ne trouve pas cette information dans les documents. En cas de doute, faites intervenir un technicien habilité. | à remplir |
+| Que faire en cas d'alarme ? | p.29 | search_text, search_tables |  | 247 | Je ne trouve pas d'informations sur la procédure à suivre en cas d'alarme dans les documents consultés.  En cas de doute, faites intervenir un technic | à remplir |
+| Quand faut-il remplacer les cartouches de filtre ? | p.18 | search_tables, search_text |  | 229 | Je ne trouve pas cette information dans les documents. En cas de doute, faites intervenir un technicien habilité. | à remplir |
+| Comment choisir l'unité de température (Celsius ou Fahrenheit) ? | p.27 | search_text, search_tables, search_images | p.11, p.14, p.35 | 585 | Je ne trouve pas d'information explicite sur la procédure de choix de l'unité de température (Celsius ou Fahrenheit) dans le texte ou les tableaux du  | à remplir |
+| Montre-moi le panneau de commande électronique | p.24 à 28 (images) | search_images | p.23, p.34, p.36 | 202 | Voici les images du panneau de commande électronique que vous pouvez consulter aux pages suivantes :  *   **Page 23** (p.23) *   **Page 34** (p.34) *  | à remplir |
+| Quelle est la capitale de la France ? | REFUS attendu | aucun |  | 445 | Je ne trouve pas cette information dans les documents. Les outils disponibles sont destinés à la recherche dans un manuel de maintenance (procédures,  | à remplir |

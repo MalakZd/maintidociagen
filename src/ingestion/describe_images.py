@@ -1,51 +1,48 @@
-import json, re, sys
+import json, sys
 from pathlib import Path
 import ollama
 
 MODEL = "qwen2.5vl:7b"
+PRIORITY_PAGES = [24, 25, 26, 27, 28, 29, 11, 12, 13]   # panneau électronique, installation
+MIN_BYTES = 10_000                                        # ignore logos et fonds
 
 PROMPT = """Tu analyses une figure extraite d'un manuel de maintenance de compresseur.
-Décris UNIQUEMENT ce que tu vois, en français, en 3 à 5 phrases courtes.
+Décris UNIQUEMENT ce que tu vois, en français, en 3 phrases courtes maximum.
 Règles strictes :
 - Indique le type de figure (schéma, photo, tableau, panneau de commande).
-- Ne cite un nom de pièce ou un numéro que s'il est lisible sans ambiguïté sur l'image.
-- Ne mentionne un voyant ou une couleur que si tu le vois clairement.
-- Si un détail est illisible ou incertain, écris « illisible » au lieu de deviner.
-- Ne répète jamais une phrase ou une liste.
-- N'utilise jamais « probablement », « semble », « pourrait » : si tu n'es pas sûr, n'en parle pas.
-- Ne décris pas les couleurs, sauf pour un voyant ou un panneau de commande.
-- N'interprète pas le fonctionnement : décris seulement ce qui est dessiné et les mots lisibles.
-- Limite-toi à 3 phrases.
-Contexte (texte de la même page du manuel, à ne pas recopier) :
+- Cite un nom de pièce ou un numéro seulement s'il est lisible sans ambiguïté.
+- Mentionne un voyant ou une couleur seulement si tu les vois clairement.
+- N'utilise jamais « probablement », « semble » ou « pourrait ». Si un détail est incertain ou illisible, n'en parle pas.
+- N'interprète pas le fonctionnement. Ne répète jamais une phrase.
+Contexte (texte de la même page, à ne pas recopier) :
 {context}"""
 
-OPTIONS = {"temperature": 0, "num_predict": 220, "repeat_penalty": 1.3}
+OPTIONS = {"temperature": 0, "num_predict": 200, "repeat_penalty": 1.3}
 
 def is_degenerate(text: str) -> bool:
     words = text.lower().split()
-    if len(words) < 8 or len(text) > 1500:
+    if len(words) < 8 or len(text) > 1200:
         return True
-    grams = [" ".join(words[i:i+4]) for i in range(len(words) - 3)]
+    grams = [" ".join(words[i:i + 4]) for i in range(len(words) - 3)]
     return len(set(grams)) / max(len(grams), 1) < 0.6
 
-def page_context(records, source, page, n=600):
+def page_context(records, source, page, n=500):
     for r in records:
         if r["source"] == source and r["page"] == page and r["type"] == "text":
             return r["content"][:n]
+
     return "(aucun texte)"
 
-
-def describe(image_path, context):
-    for _ in range(2):  # une seconde tentative si dégénéré
+def describe(path, context):
+    for _ in range(2):
         resp = ollama.chat(
             model=MODEL, options=OPTIONS,
-            messages=[{"role": "user",
-                       "content": PROMPT.format(context=context),
-                       "images": [image_path]}])
+            messages=[{"role": "user", "content": PROMPT.format(context=context),
+                       "images": [path]}])
         text = resp["message"]["content"].strip()
         if not is_degenerate(text):
             return text
-    return None  # échec : à revoir à la main
+    return None
 
 def main(records_path, limit=None):
     rec_path = Path(records_path)
@@ -53,21 +50,24 @@ def main(records_path, limit=None):
     out_path = rec_path.parent / "image_descriptions.json"
     done = json.loads(out_path.read_text(encoding="utf-8")) if out_path.exists() else {}
 
-    images = [r for r in records if r["type"] == "image"]
+    images = [r for r in records if r["type"] == "image"
+              and Path(r["path"]).exists() and Path(r["path"]).stat().st_size >= MIN_BYTES]
+    images.sort(key=lambda r: (r["page"] not in PRIORITY_PAGES, r["page"]))
     if limit:
         images = images[:limit]
+    print(f"{len(images)} images à décrire", flush=True)
 
     for i, r in enumerate(images, 1):
-        if r["path"] in done and done[r["path"]]["description"]:
+        if done.get(r["path"], {}).get("description"):
             continue
         print(f"[{i}/{len(images)}] p.{r['page']} {r['path']}", flush=True)
-        ctx = page_context(records, r["source"], r["page"])
-        desc = describe(r["path"], ctx)
-        done[r["path"]] = {"source": r["source"], "page": r["page"],
-                           "description": desc, "auto_generated": True}
-        out_path.write_text(json.dumps(done, ensure_ascii=False, indent=1),
-                            encoding="utf-8")
+        done[r["path"]] = {
+            "source": r["source"], "page": r["page"],
 
+            "description": describe(r["path"], page_context(records, r["source"], r["page"])),
+        }
+        out_path.write_text(json.dumps(done, ensure_ascii=False, indent=1), encoding="utf-8")
+    print("DESCRIPTIONS TERMINEES", flush=True)
 
 if __name__ == "__main__":
     main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else None)
