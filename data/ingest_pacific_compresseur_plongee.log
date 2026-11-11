@@ -1,1 +1,180 @@
 [1/2] Extraction de data/pdfs/pacific_compresseur_plongee.pdf
+Traceback (most recent call last):
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\src\ingestion\extract.py", line 48, in <module>
+    extract(sys.argv[1])
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\src\ingestion\extract.py", line 23, in extract
+    for t_i, tab in enumerate(page.find_tables().tables):
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\pymupdf\__init__.py", line 11992, in find_tables
+    return table.find_tables(self, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\pymupdf\table.py", line 3208, in find_tables
+    page.get_layout()
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\pymupdf\__init__.py", line 11318, in get_layout
+    self.layout_information = _get_layout(self, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\pymupdf\layout\__init__.py", line 20, in _get_layout
+    return MODEL.predict(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\pymupdf\layout\MultiProcessWrapper.py", line 156, in predict
+    return self._model.predict(page, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\pymupdf\layout\onnx\BoxRFDGNN.py", line 1119, in predict
+    grid, cells = self.table_grid_extractor.predict(
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-Traceback (most recent call last):
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\src\ingestion\index_text.py", line 44, in <module>
+    VectorSTraceback (most recent call last):
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\src\ingestion\run_pipeline.py", line 8, in <module>
+    subprocess.run([sys.executable, "src/ingestion/extract.py", pdf], check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\AppData\Local\ProgrTraceback (most recent call last):
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\src\ingestion\run_pipeline.py", line 8, in <module>
+    subprocess.run([sys.executable, "src/ingestion/extract.py", pdf], check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1214, in communicate
+    self.wait()
+    ~~~~~~~~~^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1280, in wait
+    return self._wait(timeout=timeout)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1606, in _wait
+    result = _winapi.WaitForSingleObject(self._handle,
+                                         timeout_millis)
+KeyboardInterrupt
+aintidoc\.venv\Lib\site-packages\llama_index\core\indices\vector_store\base.py", line 138, in _get_node_with_embedding
+    id_to_embed_map = embed_nodes(
+        nodes, self._embed_model, show_progress=show_progress
+    )
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\llama_index\core\indices\utils.py", line 196, in embed_nodes
+    new_embeddings = embed_model.get_text_embedding_batch(
+        texts_to_embed, show_progress=show_progress
+    )
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\llama_index_instrumentation\dispatcher.py", line 413, in wrapper
+    result = func(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\llama_index\core\base\embeddings\base.py", line 517, in get_text_embedding_batch
+    embeddings = self._get_text_embeddings(cur_batch)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\llama_index\embeddings\huggingface\base.py", line 333, in _get_text_embeddings
+    return self._embed(texts, prompt_name="text")
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\llama_index\embeddings\huggingface\base.py", line 268, in _embed
+    return self._embed_with_retry(inputs, prompt_name)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\tenacity\__init__.py", line 404, in wrapped_f
+    return copy(f, *args, **kw)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\tenacity\__init__.py", line 550, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\tenacity\__init__.py", line 440, in iter
+    result = action(retry_state)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\tenacity\__init__.py", line 462, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\tenacity\__init__.py", line 553, in __call__
+    result = fn(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\llama_index\embeddings\huggingface\base.py", line 236, in _embed_with_retry
+    emb = self._model.encode(
+        inputs,
+    ...<3 lines>...
+        show_progress_bar=self.show_progress_bar,
+    )
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\utils\_contextlib.py", line 158, in inference_mode
+    return func(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\sentence_transformers\util\decorators.py", line 46, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\sentence_transformers\sentence_transformer\model.py", line 895, in encode
+    all_embeddings = self._inference(inputs, device=device, **inference_kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\utils\_contextlib.py", line 158, in inference_mode
+    return func(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\sentence_transformers\sentence_transformer\model.py", line 963, in _inference
+    out_features = self(features, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\sentence_transformers\base\model.py", line 600, in forward
+    input = module(input, **module_kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\sentence_transformers\base\modules\transformer.py", line 1647, in forward
+    model_output = model_method(**filtered_kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\transformers\utils\generic.py", line 1081, in wrapper
+    output = func(self, *args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\transformers\utils\output_capturing.py", line 287, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\transformers\models\xlm_roberta\modeling_xlm_roberta.py", line 637, in forward
+    encoder_outputs = self.encoder(
+        embedding_output,
+    ...<6 lines>...
+        **kwargs,
+    )
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\transformers\models\xlm_roberta\modeling_xlm_roberta.py", line 531, in forward
+    hidden_states = layer_module(
+        hidden_states,
+    ...<4 lines>...
+        **kwargs,
+    )
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\transformers\modeling_layers.py", line 111, in __call__
+    return super().__call__(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\transformers\models\xlm_roberta\modeling_xlm_roberta.py", line 455, in forward
+    layer_output = apply_chunking_to_forward(
+        self.feed_forward_chunk, self.chunk_size_feed_forward, self.seq_len_dim, attention_output
+    )
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\transformers\pytorch_utils.py", line 199, in apply_chunking_to_forward
+    return forward_fn(*input_tensors)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\transformers\models\xlm_roberta\modeling_xlm_roberta.py", line 461, in feed_forward_chunk
+    intermediate_output = self.intermediate(attention_output)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\transformers\models\xlm_roberta\modeling_xlm_roberta.py", line 382, in forward
+    hidden_states = self.dense(hidden_states)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\.venv\Lib\site-packages\torch\nn\modules\linear.py", line 134, in forward
+    return F.linear(input, self.weight, self.bias)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "C:\Users\Malak\OneDrive\Documents\M2_EMSI\maintidoc\src\ingestion\run_pipeline.py", line 11, in <module>
+    subprocess.run([sys.executable, "src/ingestion/index_text.py",
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    f"data/extracted/{stem}/records.json"], check=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1214, in communicate
+    self.wait()
+    ~~~~~~~~~^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1280, in wait
+    return self._wait(timeout=timeout)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Malak\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1606, in _wait
+    result = _winapi.WaitForSingleObject(self._handle,
+                                         timeout_millis)
+KeyboardInterrupt
